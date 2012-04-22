@@ -4,18 +4,28 @@
 	<machine>
 		<name>AKA_7x7</name>
 		<geometry type="cartesian">
-			<!-- different pulleys on X and Y axii -->
-			<axis id="x" length="176" maxfeedrate="400" stepspermm="160" endstops="min"/> 
-			<axis id="y" length="176" maxfeedrate="400" stepspermm="160" endstops="min"/>
-			<axis id="z" length="48" maxfeedrate="200" stepspermm="320" endstops="min"/>
+			<!-- stepspermm = (200 steps motor per turn) * (1 for no microstepping, 4 for quarterstepping, etc) / (1.25mm is pitch of the thread) -->
+			<!-- we are halfstepping (MS1 is high, MS2 is low) so this is (200*2)/1.25 = 320 -->
+			<axis id="x" length="176" maxfeedrate="400" stepspermm="320" endstops="min"/> 
+			<axis id="y" length="176" maxfeedrate="400" stepspermm="1320" endstops="min"/>
+			<axis id="z" length="48" maxfeedrate="200" stepspermm="320" endstops="both"/>
+			<!-- Couldn't find this info anywhere outside the source: endstops are enumerated as "NONE", "BOTH", "MIN", or "MAX", case-insensitive-->
 		</geometry>
 		<tools>
-			<tool name="Pinch Wheel Extruder v1.1" type="extruder" material="abs" motor="true" fan="true" heater="true"/>
+			<!--<tool name="Pinch Wheel Extruder v1.1" type="extruder" material="abs" motor="true" fan="true" heater="true"/>-->
+			<tool name="Dremel Spindle" type="motor" motor="true"/>
 		</tools>
 		<clamps></clamps>
-		<driver name="sanguino3g">
-			<!-- optional: <portname>COM1</portname> -->
-			<rate>38400</rate>
+		<firmware url="???" autoupgrade="false"></firmware>
+		<help name="Teacup Help" url="http://reprap.org/wiki/Teacup_Firmware"></help>
+		<driver name="reprap5d">
+		    <okAfterResend>false</okAfterResend> <!-- Teacup option for reprap5d driver -->
+		    <alwaysRelativeE>true</alwaysRelativeE> <!-- Teacup option for reprap5d driver -->
+		    <pulserts>false</pulserts>
+		    <waitforstart enabled="false"></waitforstart>
+		    <debugLevel>0</debugLevel>
+		    <fived>false</fived>
+		    <rate>115200</rate>
 		</driver>
 		<warmup>
 		</warmup>
@@ -28,18 +38,28 @@ M18
 	<machine>
 		<name>AKA_7x7 slow</name>
 		<geometry type="cartesian">
-			<!-- different pulleys on X and Y axii -->
-			<axis id="x" length="176" maxfeedrate="200" stepspermm="160" endstops="min"/> 
-			<axis id="y" length="176" maxfeedrate="200" stepspermm="160" endstops="min"/>
-			<axis id="z" length="48" maxfeedrate="100" stepspermm="320" endstops="min"/>
+			<!-- stepspermm = (200 steps motor per turn) * (1 for no microstepping, 4 for quarterstepping, etc) / (1.25mm is pitch of the thread) -->
+			<!-- we are halfstepping (MS1 is high, MS2 is low) so this is (200*2)/1.25 = 320 -->
+			<axis id="x" length="176" maxfeedrate="200" stepspermm="320" endstops="min"/> 
+			<axis id="y" length="176" maxfeedrate="200" stepspermm="320" endstops="min"/>
+			<axis id="z" length="48" maxfeedrate="100" stepspermm="320" endstops="both"/>
+			<!-- Couldn't find this info anywhere outside the source: endstops are enumerated as "NONE", "BOTH", "MIN", or "MAX", case-insensitive-->
 		</geometry>
 		<tools>
-			<tool name="Pinch Wheel Extruder v1.1" type="extruder" material="abs" motor="true" fan="true" heater="true"/>
+			<!--<tool name="Pinch Wheel Extruder v1.1" type="extruder" material="abs" motor="true" fan="true" heater="true"/>-->
+			<tool name="Dremel Spindle" type="motor" motor="true"/>
 		</tools>
 		<clamps></clamps>
-		<driver name="sanguino3g">
-			<!-- optional: <portname>COM1</portname> -->
-			<rate>38400</rate>
+		<firmware url="???" autoupgrade="false"></firmware>
+		<help name="Teacup Help" url="http://reprap.org/wiki/Teacup_Firmware"></help>
+		<driver name="reprap5d">
+		    <okAfterResend>false</okAfterResend> <!-- Teacup option for reprap5d driver -->
+		    <alwaysRelativeE>true</alwaysRelativeE> <!-- Teacup option for reprap5d driver -->
+		    <pulserts>false</pulserts>
+		    <waitforstart enabled="false"></waitforstart>
+		    <debugLevel>0</debugLevel>
+		    <fived>false</fived>
+		    <rate>115200</rate>
 		</driver>
 		<warmup>
 		</warmup>
